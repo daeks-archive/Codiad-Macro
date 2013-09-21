@@ -71,6 +71,15 @@
                 $macro = new Macro();
                 $macrolist = $macro->Load();
                 $command = $macrolist[$_GET['id']][1];
+                
+                if(!Common::isAbsPath($_GET['path'])) {
+                  $_GET['path'] = WORKSPACE.'/'.$_GET['path'];
+                }
+                if(is_file($_GET['path'])) {
+                  $command = str_replace('%FILE%',$_GET['path'],$command);
+                } else {
+                  $command = str_replace('%FOLDER%',$_GET['path'],$command);
+                }
             ?>
             <form>
             <label><?php i18n("Execute Command"); ?></label>
