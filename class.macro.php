@@ -82,7 +82,7 @@ class Macro extends Common {
           $command = str_replace('%FOLDER%',$this->path,$command);
         }
         
-        shell_exec($command);
+        shell_exec(escapeshellcmd($command));
         echo formatJSEND("success",null);
     }
     

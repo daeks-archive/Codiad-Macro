@@ -67,7 +67,7 @@
                 } else {
                   echo '<option value="both">All</option>';
                 }
-                echo '</select></td><td width="600px"><input class="macro-command" id="c'.$id.'" type="text" value="'.$macro['c'].'"></td><select id="d'.$id.'" type="text">';
+                echo '</select></td><td width="450px"><input class="macro-command" id="c'.$id.'" type="text" value="'.htmlentities($macro['c']).'"></td><td width="100px"><select id="d'.$id.'" type="text">';
                 if($macro['d'] == 'false') {
                   echo '<option value="false" selected>No</option>';
                 } else {
@@ -78,7 +78,7 @@
                 } else {
                   echo '<option value="true">Yes</option>';
                 }
-                echo '<td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
+                echo '</select></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
               }           
             ?>
             </table>
@@ -120,7 +120,7 @@
             <label><?php i18n("Execute Command"); ?></label>
             <pre>Command: <?php echo $command; ?></pre>
             <?php
-              echo '<pre>'.shell_exec($command).'</pre>';
+              echo '<pre>'.shell_exec(escapeshellcmd($command)).'</pre>';
             ?>
             <button class="btn" onclick="codiad.modal.unload();return false;"><?php i18n("Close"); ?></button>
             </form>
