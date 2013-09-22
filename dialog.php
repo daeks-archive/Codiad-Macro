@@ -99,6 +99,7 @@
                 }
                 if(is_file($_GET['path'])) {
                   $command = str_replace('%FILE%',$_GET['path'],$command);
+                  $command = str_replace('%FOLDER%',dirname($_GET['path']),$command);
                 } else {
                   $command = str_replace('%FOLDER%',$_GET['path'],$command);
                 }
