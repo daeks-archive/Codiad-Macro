@@ -14,7 +14,8 @@ class Macro extends Common {
     // PROPERTIES
     //////////////////////////////////////////////////////////////////
 
-    public $command = 0;
+    public $id = 0;
+    public $path = '';
 
     //////////////////////////////////////////////////////////////////
     // METHODS
@@ -28,7 +29,7 @@ class Macro extends Common {
 
     public function __construct(){
         if(!file_exists(DATA."/config/".get_called_class().".php")) {
-          mkdir(DATA."/config");
+          @mkdir(DATA."/config");
           saveJSON("/config/".get_called_class().".php", array());
         }
     }
@@ -61,6 +62,28 @@ class Macro extends Common {
 			}
 			saveJSON("/config/".get_called_class().".php", $data);
 			echo formatJSEND("success",null);
+    }
+    
+    //////////////////////////////////////////////////////////////////
+    // Execute Macro
+    //////////////////////////////////////////////////////////////////
+
+    public function Execute() {
+        $macrolist = $this->Load();
+        $command = $macrolist[$this->id]['c'];
+        
+        if(!$this->isAbsPath($this->path)) {
+          $this->path = WORKSPACE.'/'.$this->path;
+        }
+        if(is_file($this->path)) {
+          $command = str_replace('%FILE%',$this->path,$command);
+          $command = str_replace('%FOLDER%',dirname($this->path),$command);
+        } else {
+          $command = str_replace('%FOLDER%',$this->path,$command);
+        }
+        
+        shell_exec($command);
+        echo formatJSEND("success",null);
     }
     
 }

@@ -22,7 +22,7 @@
     // Load Contextmenu Macros
     //////////////////////////////////////////////////////////////////
 
-    if(isset($_GET['action']) && $_GET['action']=='init'){
+    if($_GET['action']=='init'){
         echo json_encode($macro->Load());
     }
     
@@ -30,8 +30,22 @@
     // Save Contextmenu Macros
     //////////////////////////////////////////////////////////////////
 
-    if(isset($_GET['action']) && $_GET['action']=='save'){
-        $macro->Save();
+    if($_GET['action']=='save'){
+        if(checkAccess()) {
+          $macro->Save();
+        }
+    }
+    
+    //////////////////////////////////////////////////////////////////
+    // Execute Macro
+    //////////////////////////////////////////////////////////////////
+
+    if($_GET['action']=='execute'){
+        if(checkAccess()) {
+          $macro->id = $_GET['id'];
+          $macro->path = $_GET['path'];
+          $macro->Execute();
+        }
     }
     
 ?>

@@ -30,7 +30,7 @@
             $.get(_this.controller + '?action=init', function(data) {
                 var response = jQuery.parseJSON(data);
                 jQuery.each(response, function(i, val) {
-                  var macro = '<a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\',$(\'#context-menu\').attr(\'data-path\'));"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
+                  var macro = '<a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\','+val['d']+', $(\'#context-menu\').attr(\'data-path\'));"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
                   $('#'+val['t']).append(macro);
                 });
             });
@@ -53,7 +53,7 @@
 
         add: function (type) {
             var rowid = parseInt($('#macrocount').val())+1;
-            var newcommand = '<tr id="l'+rowid+'"><td width="200px"><input id="rowid" type="hidden" value="'+rowid+'"><input class="macro-command" id="n'+rowid+'" type="text" value=""></td><td width="100px"><input class="macro-command" id="d'+rowid+'" type="hidden" value="false"><input class="macro-command" id="i'+rowid+'" type="hidden" value="bookmark"><input class="macro-command" id="t'+rowid+'" type="hidden" value="'+type+'"><select id="a'+rowid+'" type="text"><option value="root-only">Root</option><option value="file-only">File</option><option value="directory-only">Folder</option><option value="both">All</option></select></td><td width="500px"><input class="macro-command" id="c'+rowid+'" type="text" value=""></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''+rowid+'\',);return false;">X</button></td></tr>';
+            var newcommand = '<tr id="l'+rowid+'"><td width="200px"><input id="rowid" type="hidden" value="'+rowid+'"><input class="macro-command" id="n'+rowid+'" type="text" value=""></td><td width="100px"><input class="macro-command" id="i'+rowid+'" type="hidden" value="bookmark"><input class="macro-command" id="t'+rowid+'" type="hidden" value="'+type+'"><select id="a'+rowid+'" type="text"><option value="root-only">Root</option><option value="file-only">File</option><option value="directory-only">Folder</option><option value="both">All</option></select></td><td width="450px"><input class="macro-command" id="c'+rowid+'" type="text" value=""></td><td width="100px" colspan="2"><select id="d'+rowid+'" type="text"><option value="false">No</option><option value="true">Yes</option></select></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''+rowid+'\',);return false;">X</button></td></tr>';
             $('#macrolist').append(newcommand);
             $('#macrolist').scrollTop(1000000);
             $('#macrocount').val(rowid);
@@ -79,7 +79,7 @@
                 $this = $(this)
                 var rowid = $this.find("input#rowid").val();
                 formData['n[]'].push($this.find("input#n"+rowid).val());
-                formData['d[]'].push($this.find("input#d"+rowid).val());
+                formData['d[]'].push($this.find("select#d"+rowid).val());
                 formData['a[]'].push($this.find("select#a"+rowid).val());
                 formData['i[]'].push($this.find("input#i"+rowid).val());
                 formData['t[]'].push($this.find("input#t"+rowid).val());
@@ -100,11 +100,22 @@
         // Save
         //////////////////////////////////////////////////////////////////
 
-        execute: function (id, path) {
+        execute: function (id, daemon, path) {
             var _this = this;
-            $('#modal-content form')
-                .die('submit'); // Prevent form bubbling
-                codiad.modal.load(850, this.dialog + '?action=execute&id=' + id + '&path=' + path);
+            if(daemon) {
+              $.get(_this.controller + '?action=execute&id=' + id + '&path=' + path, function(data){
+                  var response = codiad.jsend.parse(data);
+                  if (response != 'error') {
+                      codiad.message.success('Macro executed');
+                  } else {
+                      codiad.message.error('Save failed');
+                  }
+              });
+            } else {
+              $('#modal-content form')
+                  .die('submit'); // Prevent form bubbling
+                  codiad.modal.load(850, this.dialog + '?action=execute&id=' + id + '&path=' + path);
+            }
         }
 
     };

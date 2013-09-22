@@ -38,14 +38,15 @@
               <tr>
                   <th width="200px"><?php i18n("Name"); ?></td>
                   <th width="100px"><?php i18n("Applies"); ?></td>
-                  <th width="550px" colspan="2"><?php i18n("Shell Command"); ?></td>
+                  <th width="450px"><?php i18n("Shell Command"); ?></td>
+                  <th width="100px" colspan="2"><?php i18n("Daemon"); ?></td>
               </tr>
             </table>
             <div class="macro-wrapper">
             <table id="macrolist" width="850px">
             <?php
               foreach($macrolist as $id=>$macro) {
-                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="d'.$id.'" type="hidden" value="'.$macro['d'].'"><input class="macro-command" id="i'.$id.'" type="hidden" value="'.$macro['i'].'"><input class="macro-command" id="t'.$id.'" type="hidden" value="'.$macro['t'].'"><select id="a'.$id.'" type="text">';
+                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="i'.$id.'" type="hidden" value="'.$macro['i'].'"><input class="macro-command" id="t'.$id.'" type="hidden" value="'.$macro['t'].'"><select id="a'.$id.'" type="text">';
                 if($macro['a'] == 'root-only') {
                   echo '<option value="root-only" selected>Root</option>';
                 } else {
@@ -66,7 +67,18 @@
                 } else {
                   echo '<option value="both">All</option>';
                 }
-                echo '</select></td><td width="600px"><input class="macro-command" id="c'.$id.'" type="text" value="'.$macro['c'].'"></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
+                echo '</select></td><td width="600px"><input class="macro-command" id="c'.$id.'" type="text" value="'.$macro['c'].'"></td><select id="d'.$id.'" type="text">';
+                if($macro['d'] == 'false') {
+                  echo '<option value="false" selected>No</option>';
+                } else {
+                  echo '<option value="false">No</option>';
+                }
+                if($macro['d'] == 'true') {
+                  echo '<option value="true" selected>Yes</option>';
+                } else {
+                  echo '<option value="true">Yes</option>';
+                }
+                echo '<td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
               }           
             ?>
             </table>
