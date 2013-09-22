@@ -45,7 +45,7 @@
             <table id="macrolist" width="850px">
             <?php
               foreach($macrolist as $id=>$macro) {
-                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="i'.$id.'" type="hidden" value=""><input class="macro-command" id="t'.$id.'" type="hidden" value=""><select id="a'.$id.'" type="text">';
+                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="i'.$id.'" type="hidden" value="'.$macro['t'].'"><input class="macro-command" id="t'.$id.'" type="hidden" value=""><select id="a'.$id.'" type="text">';
                 if($macro['a'] == 'root-only') {
                   echo '<option value="root-only" selected>Root</option>';
                 } else {
@@ -73,7 +73,7 @@
             </div>
             <input type="hidden" id="macrocount" value="<?php echo sizeof($macrolist); ?>">
             <pre>Placeholders are: %FILE%, %FOLDER%</pre>
-            <button class="btn-left" onclick="codiad.macro.add();return false;"><?php i18n("Add New Macro"); ?></button><button style="color: blue;" class="btn-mid" onclick="codiad.macro.save();return false;"><?php i18n("Save & Reload"); ?></button><button class="btn-right" onclick="codiad.modal.unload();return false;"><?php i18n("Close"); ?></button>
+            <button class="btn-left" onclick="codiad.macro.add('context-menu');return false;"><?php i18n("Add New Macro"); ?></button><button style="color: blue;" class="btn-mid" onclick="codiad.macro.save();return false;"><?php i18n("Save & Reload"); ?></button><button class="btn-right" onclick="codiad.modal.unload();return false;"><?php i18n("Close"); ?></button>
             </form>
             <?php }
             break;
