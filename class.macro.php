@@ -50,6 +50,7 @@ class Macro extends Common {
       if(isset($_GET['n'])) {
         foreach ($_GET['n'] as $key => $name){
           $tmp['n'] = trim($name);
+          $tmp['d'] = trim($_GET["d"][$key]);
           $tmp['a'] = trim($_GET["a"][$key]);
           $tmp['t'] = trim($_GET["t"][$key]);
           $tmp['i'] = trim($_GET["i"][$key]);
