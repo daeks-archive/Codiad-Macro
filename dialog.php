@@ -45,23 +45,23 @@
             <table id="macrolist" width="850px">
             <?php
               foreach($macrolist as $id=>$macro) {
-                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="i'.$id.'" type="hidden" value=""><select id="t'.$id.'" type="text">';
-                if($macro['t'] == 'root-only') {
+                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="i'.$id.'" type="hidden" value=""><input class="macro-command" id="t'.$id.'" type="hidden" value=""><select id="a'.$id.'" type="text">';
+                if($macro['a'] == 'root-only') {
                   echo '<option value="root-only" selected>Root</option>';
                 } else {
                   echo '<option value="root-only">Root</option>';
                 }
-                if($macro['t'] == 'file-only') {
+                if($macro['a'] == 'file-only') {
                   echo '<option value="file-only" selected>File</option>';
                 } else {
                   echo '<option value="file-only">File</option>';
                 }
-                if($macro['t'] == 'directory-only') {
+                if($macro['a'] == 'directory-only') {
                   echo '<option value="directory-only" selected>Folder</option>';
                 } else {
                   echo '<option value="directory-only">Folder</option>';
                 }
-                if($macro['t'] == 'both') {
+                if($macro['a'] == 'both') {
                   echo '<option value="both" selected>All</option>';
                 } else {
                   echo '<option value="both">All</option>';
