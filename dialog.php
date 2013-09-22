@@ -84,7 +84,8 @@
             </table>
             </div>
             <input type="hidden" id="macrocount" value="<?php echo sizeof($macrolist); ?>">
-            <pre>Placeholders are: %FILE%, %FOLDER%</pre>
+            <br><pre>Placeholders are: %FILE%, %FOLDER%</pre>
+            <em class="note">Note: Press Save to activate your changes. Placeholders can be used in shell commands to be replaced with the selected value.</em><br><br>
             <button class="btn-left" onclick="codiad.macro.add('context-menu');return false;"><?php i18n("Add New Macro"); ?></button><button style="color: blue;" class="btn-mid" onclick="codiad.macro.save();return false;"><?php i18n("Save & Reload"); ?></button><button class="btn-right" onclick="codiad.modal.unload();return false;"><?php i18n("Close"); ?></button>
             </form>
             <?php }
