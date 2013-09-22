@@ -35,7 +35,7 @@
                     $('#'+val['t']).append(macro);
                   }
                   if(val['t'] == 'sb-right-content') {
-                    var macro = '<a onclick="codiad.macro.execute(\''+i+'\','+val['d']+', null);"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
+                    var macro = '<a onclick="codiad.macro.execute(\''+i+'\','+val['d']+', codiad.project.getCurrent());"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
                     $('.'+val['t']).prepend(macro);                    
                   }
                 });
