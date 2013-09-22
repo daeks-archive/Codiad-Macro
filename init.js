@@ -57,9 +57,9 @@
         // Add
         //////////////////////////////////////////////////////////////////
 
-        add: function (type) {
+        add: function () {
             var rowid = parseInt($('#macrocount').val())+1;
-            var newcommand = '<tr id="l'+rowid+'"><td width="200px"><input id="rowid" type="hidden" value="'+rowid+'"><input class="macro-command" id="n'+rowid+'" type="text" value=""></td><td width="100px"><input class="macro-command" id="i'+rowid+'" type="hidden" value="bookmark"><input class="macro-command" id="t'+rowid+'" type="hidden" value="'+type+'"><select id="a'+rowid+'" type="text"><option value="root-only">Root</option><option value="file-only">File</option><option value="directory-only">Folder</option><option value="both">All</option></select></td><td width="450px"><input class="macro-command" id="c'+rowid+'" type="text" value=""></td><td width="100px" colspan="2"><select id="d'+rowid+'" type="text"><option value="false">No</option><option value="true">Yes</option></select></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''+rowid+'\',);return false;">X</button></td></tr>';
+            var newcommand = '<tr id="l'+rowid+'"><td width="100px"><input id="rowid" type="hidden" value="'+rowid+'"><select id="t'+rowid+'"><option value="context-menu">Menu</option><option value="sb-right-content">Bar</option></select></td><td width="150px"><input class="macro-command" id="n'+rowid+'" type="text" value=""></td><td width="100px"><input class="macro-command" id="i'+rowid+'" type="hidden" value="bookmark"><select id="a'+rowid+'"><option value="root-only">Root</option><option value="file-only">File</option><option value="directory-only">Folder</option><option value="both">All</option></select></td><td width="400px"><input class="macro-command" id="c'+rowid+'" type="text" value=""></td><td width="100px"><select id="d'+rowid+'"><option value="false">No</option><option value="true">Yes</option></select></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''+rowid+'\',);return false;">X</button></td></tr>';
             $('#macrolist').append(newcommand);
             $('.macro-wrapper').scrollTop(1000000);
             $('#macrocount').val(rowid);
@@ -88,7 +88,7 @@
                 formData['d[]'].push($this.find("select#d"+rowid).val());
                 formData['a[]'].push($this.find("select#a"+rowid).val());
                 formData['i[]'].push($this.find("input#i"+rowid).val());
-                formData['t[]'].push($this.find("input#t"+rowid).val());
+                formData['t[]'].push($this.find("select#t"+rowid).val());
                 formData['c[]'].push($this.find("input#c"+rowid).val());
             });
             
