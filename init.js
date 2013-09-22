@@ -30,7 +30,7 @@
             $.get(_this.controller + '?action=init', function(data) {
                 var response = jQuery.parseJSON(data);
                 jQuery.each(response, function(i, val) {
-                  var macro = '<a class="both" onclick="codiad.macro.execute(\''+i+'\',$(\'#context-menu\').attr(\'data-path\'));"><span class="icon-bookmarks"></span>'+val[0]+'</a>';
+                  var macro = '<a class="both" onclick="codiad.macro.execute(\''+i+'\',$(\'#context-menu\').attr(\'data-path\'));"><span class="icon-bookmarks"></span>'+val['n']+'</a>';
                   $('#context-menu').append(macro);
                 });
             });

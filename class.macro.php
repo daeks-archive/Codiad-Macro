@@ -48,8 +48,8 @@ class Macro extends Common {
     public function Save() {
       $data = array();
       foreach ($_GET['name'] as $key => $name){
-        $tmp[0] = trim($name);
-        $tmp[1] = trim($_GET["command"][$key]);
+        $tmp['n'] = trim($name);
+        $tmp['c'] = trim($_GET["command"][$key]);
         
         array_push($data,$tmp);
 			}

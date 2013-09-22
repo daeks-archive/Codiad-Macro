@@ -44,7 +44,7 @@
             <table id="macrolist" width="850px">
             <?php
               foreach($macrolist as $id=>$macro) {
-                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro[0].'"></td><td width="600px"><input class="macro-command" id="c'.$id.'" type="text" value="'.$macro[1].'"></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
+                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="600px"><input class="macro-command" id="c'.$id.'" type="text" value="'.$macro['c'].'"></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
               }           
             ?>
             </table>
@@ -70,7 +70,7 @@
                 require_once('class.macro.php');
                 $macro = new Macro();
                 $macrolist = $macro->Load();
-                $command = $macrolist[$_GET['id']][1];
+                $command = $macrolist[$_GET['id']]['c'];
                 
                 if(!Common::isAbsPath($_GET['path'])) {
                   $_GET['path'] = WORKSPACE.'/'.$_GET['path'];
