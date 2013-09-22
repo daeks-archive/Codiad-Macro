@@ -45,7 +45,7 @@
             <table id="macrolist" width="850px">
             <?php
               foreach($macrolist as $id=>$macro) {
-                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="i'.$id.'" type="hidden" value="'.$macro['t'].'"><input class="macro-command" id="t'.$id.'" type="hidden" value=""><select id="a'.$id.'" type="text">';
+                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="i'.$id.'" type="hidden" value="'.$macro['i'].'"><input class="macro-command" id="t'.$id.'" type="hidden" value="'.$macro['t'].'"><select id="a'.$id.'" type="text">';
                 if($macro['a'] == 'root-only') {
                   echo '<option value="root-only" selected>Root</option>';
                 } else {

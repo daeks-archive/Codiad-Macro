@@ -30,7 +30,7 @@
             $.get(_this.controller + '?action=init', function(data) {
                 var response = jQuery.parseJSON(data);
                 jQuery.each(response, function(i, val) {
-                  var macro = '<a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\',$(\'#context-menu\').attr(\'data-path\'));"><span class="icon-bookmark"></span>'+val['n']+'</a>';
+                  var macro = '<a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\',$(\'#context-menu\').attr(\'data-path\'));"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
                   $('#'+val['t']).append(macro);
                 });
             });
@@ -53,7 +53,7 @@
 
         add: function (type) {
             var rowid = parseInt($('#macrocount').val())+1;
-            var newcommand = '<tr id="l'+rowid+'"><td width="200px"><input id="rowid" type="hidden" value="'+rowid+'"><input class="macro-command" id="n'+rowid+'" type="text" value=""></td><td width="100px"><input class="macro-command" id="i'+rowid+'" type="hidden" value=""><input class="macro-command" id="t'+rowid+'" type="hidden" value="'+type+'"><select id="a'+rowid+'" type="text"><option value="root-only">Root</option><option value="file-only">File</option><option value="directory-only">Folder</option><option value="both">All</option></select></td><td width="500px"><input class="macro-command" id="c'+rowid+'" type="text" value=""></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''+rowid+'\',);return false;">X</button></td></tr>';
+            var newcommand = '<tr id="l'+rowid+'"><td width="200px"><input id="rowid" type="hidden" value="'+rowid+'"><input class="macro-command" id="n'+rowid+'" type="text" value=""></td><td width="100px"><input class="macro-command" id="i'+rowid+'" type="hidden" value="bookmark"><input class="macro-command" id="t'+rowid+'" type="hidden" value="'+type+'"><select id="a'+rowid+'" type="text"><option value="root-only">Root</option><option value="file-only">File</option><option value="directory-only">Folder</option><option value="both">All</option></select></td><td width="500px"><input class="macro-command" id="c'+rowid+'" type="text" value=""></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''+rowid+'\',);return false;">X</button></td></tr>';
             $('#macrolist').append(newcommand);
             $('#macrolist').scrollTop(1000000);
             $('#macrocount').val(rowid);
