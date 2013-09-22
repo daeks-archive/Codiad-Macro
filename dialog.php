@@ -62,9 +62,9 @@
                   echo '<option value="directory-only">Folder</option>';
                 }
                 if($macro['t'] == 'both') {
-                  echo '<option value="both" selected>Both</option>';
+                  echo '<option value="both" selected>All</option>';
                 } else {
-                  echo '<option value="both">Both</option>';
+                  echo '<option value="both">All</option>';
                 }
                 echo '</select></td><td width="600px"><input class="macro-command" id="c'.$id.'" type="text" value="'.$macro['c'].'"></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
               }           
