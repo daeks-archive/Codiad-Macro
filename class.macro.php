@@ -47,13 +47,15 @@ class Macro extends Common {
 
     public function Save() {
       $data = array();
-      foreach ($_GET['n'] as $key => $name){
-        $tmp['n'] = trim($name);
-        $tmp['t'] = trim($_GET["t"][$key]);
-        $tmp['i'] = trim($_GET["i"][$key]);
-        $tmp['c'] = trim($_GET["c"][$key]);
-        
-        array_push($data,$tmp);
+      if(isset($_GET['n'])) {
+        foreach ($_GET['n'] as $key => $name){
+          $tmp['n'] = trim($name);
+          $tmp['t'] = trim($_GET["t"][$key]);
+          $tmp['i'] = trim($_GET["i"][$key]);
+          $tmp['c'] = trim($_GET["c"][$key]);
+          
+          array_push($data,$tmp);
+        }
 			}
 			saveJSON("/config/".get_called_class().".php", $data);
 			echo formatJSEND("success",null);
