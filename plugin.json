@@ -1,11 +1,11 @@
 [ { "author" : "daeks",
-    "version": "0.2",
+    "version": "0.3",
     "name" : "Codiad Macro",
     "image" : "https://raw.github.com/daeks/Codiad-Macro/master/screen.png",
     "url" : "https://github.com/daeks/Codiad-Macro",
     "rightbar" : [{
         "action" : "codiad.macro.config();",
-        "icon" : "icon-bookmarks",
+        "icon" : "icon-keyboard",
         "title" : "Macro Editor"
         }]
   } ]
