@@ -37,8 +37,8 @@
             <table width="850px">
               <tr>
                   <th width="200px"><?php i18n("Name"); ?></td>
-                  <th width="100px"><?php i18n("Type"); ?></td>
-                  <th width="550px" colspan="2"><?php i18n("Command"); ?></td>
+                  <th width="100px"><?php i18n("Applies"); ?></td>
+                  <th width="550px" colspan="2"><?php i18n("Shell Command"); ?></td>
               </tr>
             </table>
             <div class="macro-wrapper">
