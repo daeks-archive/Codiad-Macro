@@ -31,7 +31,7 @@
                 var response = jQuery.parseJSON(data);
                 jQuery.each(response, function(i, val) {
                   if(val['t'] == 'context-menu') {
-                    var macro = '<a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\','+val['d']+', $(\'#context-menu\').attr(\'data-path\'));"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
+                    var macro = '<hr class="'+val['a']+'"><a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\','+val['d']+', $(\'#context-menu\').attr(\'data-path\'));"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
                     $('#'+val['t']).append(macro);
                   }
                   if(val['t'] == 'sb-right-content') {
