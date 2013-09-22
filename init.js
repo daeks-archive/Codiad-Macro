@@ -30,8 +30,14 @@
             $.get(_this.controller + '?action=init', function(data) {
                 var response = jQuery.parseJSON(data);
                 jQuery.each(response, function(i, val) {
-                  var macro = '<a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\','+val['d']+', $(\'#context-menu\').attr(\'data-path\'));"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
-                  $('#'+val['t']).append(macro);
+                  if(val['t'] == 'context-menu') {
+                    var macro = '<a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\','+val['d']+', $(\'#context-menu\').attr(\'data-path\'));"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
+                    $('#'+val['t']).append(macro);
+                  }
+                  if(val['t'] == 'sb-right-content') {
+                    var macro = '<a onclick="codiad.macro.execute(\''+i+'\','+val['d']+', null);"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
+                    $('.'+val['t']).prepend(macro);                    
+                  }
                 });
             });
         },
