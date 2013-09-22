@@ -37,19 +37,41 @@
             <table width="850px">
               <tr>
                   <th width="200px"><?php i18n("Name"); ?></td>
-                  <th width="650px" colspan="2"><?php i18n("Command"); ?></td>
+                  <th width="100px"><?php i18n("Type"); ?></td>
+                  <th width="550px" colspan="2"><?php i18n("Command"); ?></td>
               </tr>
             </table>
             <div class="macro-wrapper">
             <table id="macrolist" width="850px">
             <?php
               foreach($macrolist as $id=>$macro) {
-                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="600px"><input class="macro-command" id="c'.$id.'" type="text" value="'.$macro['c'].'"></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
+                echo '<tr id="l'.$id.'"><td width="200px"><input id="rowid" type="hidden" value="'.$id.'"><input class="macro-command" id="n'.$id.'" type="text" value="'.$macro['n'].'"></td><td width="100px"><input class="macro-command" id="i'.$id.'" type="hidden" value=""><select id="t'.$id.'" type="text">';
+                if($macro['t'] == 'root-only') {
+                  echo '<option value="root-only" selected>Root</option>';
+                } else {
+                  echo '<option value="root-only">Root</option>';
+                }
+                if($macro['t'] == 'file-only') {
+                  echo '<option value="file-only" selected>File</option>';
+                } else {
+                  echo '<option value="file-only">File</option>';
+                }
+                if($macro['t'] == 'directory-only') {
+                  echo '<option value="directory-only" selected>Folder</option>';
+                } else {
+                  echo '<option value="directory-only">Folder</option>';
+                }
+                if($macro['t'] == 'both') {
+                  echo '<option value="both" selected>Both</option>';
+                } else {
+                  echo '<option value="both">Both</option>';
+                }
+                echo '</select></td><td width="600px"><input class="macro-command" id="c'.$id.'" type="text" value="'.$macro['c'].'"></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''.$id.'\');return false;">X</button></td></tr>';        
               }           
             ?>
             </table>
             </div>
-            <input type="hidden" id="i" value="<?php echo sizeof($macrolist); ?>">
+            <input type="hidden" id="macrocount" value="<?php echo sizeof($macrolist); ?>">
             <pre>Placeholders are: %FILE%, %FOLDER%</pre>
             <button class="btn-left" onclick="codiad.macro.add();return false;"><?php i18n("Add"); ?></button><button class="btn-mid" onclick="codiad.macro.save();return false;"><?php i18n("Save"); ?></button><button class="btn-right" onclick="codiad.modal.unload();return false;"><?php i18n("Close"); ?></button>
             </form>

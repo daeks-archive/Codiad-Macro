@@ -30,7 +30,7 @@
             $.get(_this.controller + '?action=init', function(data) {
                 var response = jQuery.parseJSON(data);
                 jQuery.each(response, function(i, val) {
-                  var macro = '<a class="both" onclick="codiad.macro.execute(\''+i+'\',$(\'#context-menu\').attr(\'data-path\'));"><span class="icon-bookmarks"></span>'+val['n']+'</a>';
+                  var macro = '<a class="'+val['t']+'" onclick="codiad.macro.execute(\''+i+'\',$(\'#context-menu\').attr(\'data-path\'));"><span class="icon-bookmark"></span>'+val['n']+'</a>';
                   $('#context-menu').append(macro);
                 });
             });
@@ -52,11 +52,11 @@
         //////////////////////////////////////////////////////////////////
 
         add: function () {
-            var rowid = parseInt($('#i').val())+1;
-            var newcommand = '<tr id="l'+rowid+'"><td width="200px"><input id="rowid" type="hidden" value="'+rowid+'"><input class="macro-command" id="n'+rowid+'" type="text" value=""></td><td width="600px"><input class="macro-command" id="c'+rowid+'" type="text" value=""></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''+rowid+'\',);return false;">X</button></td></tr>';
+            var rowid = parseInt($('#macrocount').val())+1;
+            var newcommand = '<tr id="l'+rowid+'"><td width="200px"><input id="rowid" type="hidden" value="'+rowid+'"><input class="macro-command" id="n'+rowid+'" type="text" value=""></td><td width="100px"><input class="macro-command" id="i'+rowid+'" type="hidden" value=""><select id="t'+rowid+'" type="text"><option value="root-only">Root</option><option value="file-only">File</option><option value="directory-only">Folder</option><option value="both">Both</option></select></td><td width="500px"><input class="macro-command" id="c'+rowid+'" type="text" value=""></td><td width="50px"><button class="btn-left" onclick="codiad.macro.remove(\''+rowid+'\',);return false;">X</button></td></tr>';
             $('#macrolist').append(newcommand);
             $('#macrolist').scrollTop(1000000);
-            $('#i').val(rowid);
+            $('#macrocount').val(rowid);
         },
         
         //////////////////////////////////////////////////////////////////
@@ -73,13 +73,15 @@
 
         save: function () {
             var _this = this;
-            var formData = {'name[]' : [], 'command[]' : []};
+            var formData = {'n[]' : [], 't[]' : [], 'i[]' : [], 'c[]' : []};
             
             $("#macrolist tr").each(function(i, tr) {
                 $this = $(this)
                 var rowid = $this.find("input#rowid").val();
-                formData['name[]'].push($this.find("input#n"+rowid).val());
-                formData['command[]'].push($this.find("input#c"+rowid).val());
+                formData['n[]'].push($this.find("input#n"+rowid).val());
+                formData['t[]'].push($this.find("select#t"+rowid).val());
+                formData['i[]'].push($this.find("input#i"+rowid).val());
+                formData['c[]'].push($this.find("input#c"+rowid).val());
             });
             
             $.get(this.controller+'?action=save', formData, function(data){
