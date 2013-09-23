@@ -40,7 +40,7 @@
                   <th width="150px"><?php i18n("Name"); ?></td>
                   <th width="100px"><?php i18n("Applies"); ?></td>
                   <th width="400px"><?php i18n("Shell Command"); ?></td>
-                  <th width="100px" colspan="2"><?php i18n("Daemon"); ?></td>
+                  <th width="100px" colspan="2"><?php i18n("Background"); ?></td>
               </tr>
             </table>
             <div class="macro-wrapper">
