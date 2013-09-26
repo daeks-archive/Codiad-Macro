@@ -133,7 +133,7 @@
             <label><?php i18n("Execute Command"); ?></label>
             <pre>Command: <?php echo $command; ?></pre>
             <?php
-              echo '<pre>'.shell_exec(escapeshellcmd($command)).'</pre>';
+              echo '<pre>'.shell_exec($command).'</pre>';
             ?>
             <button class="btn" onclick="codiad.modal.unload();return false;"><?php i18n("Close"); ?></button>
             </form>
