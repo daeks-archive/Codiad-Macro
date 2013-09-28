@@ -29,12 +29,25 @@
             var _this = this;
             $.get(_this.controller + '?action=init', function(data) {
                 var response = jQuery.parseJSON(data);
+                var buffer = [];
                 jQuery.each(response, function(i, val) {
                   if(val['t'] == 'context-menu') {
-                    $('#'+val['t']).append('<hr class="'+val['a']+'">');
-                    return false;
+                    buffer.push(val['a']);
                   }
                 });
+                if (buffer.indexOf('both')) {
+                  $('#context-menu').append('<hr class="both">');
+                } else {
+                  if (buffer.indexOf('root-only') !== -1) {
+                    $('#context-menu').append('<hr class="root-only">');
+                  }
+                  if (buffer.indexOf('directory-only') !== -1) {
+                    $('#context-menu').append('<hr class="directory-only">');
+                  }
+                  if (buffer.indexOf('file-only') !== -1) {
+                    $('#context-menu').append('<hr class="file-only">');
+                  }
+                }
                 jQuery.each(response, function(i, val) {
                   if(val['t'] == 'context-menu') {
                     var macro = '<a class="'+val['a']+'" onclick="codiad.macro.execute(\''+i+'\','+val['d']+', $(\'#context-menu\').attr(\'data-path\'));"><span class="icon-'+val['i']+'"></span>'+val['n']+'</a>';
