@@ -78,8 +78,10 @@ class Macro extends Common {
         if(is_file($this->path)) {
           $command = str_replace('%FILE%',$this->path,$command);
           $command = str_replace('%FOLDER%',dirname($this->path),$command);
+          $command = str_replace('%NAME%',basename($this->path),$command);
         } else {
           $command = str_replace('%FOLDER%',$this->path,$command);
+          $command = str_replace('%NAME%',basename($this->path),$command);
         }
         
         shell_exec($command);
